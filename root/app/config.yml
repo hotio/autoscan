@@ -13,7 +13,7 @@ anchors:
 
 authentication:
   username: hotio
-  password: {PASSWORD}
+  password: PASSWORD
 
 port: 3030
 
@@ -37,7 +37,7 @@ targets:
   plex:
     - url: https://plex:32400
       database: /databases/plex/com.plexapp.plugins.library.db
-      token: {TOKEN}
+      token: TOKEN
       rewrite:
         from: /storage/*
         to: /storage/$1

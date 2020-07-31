@@ -9,7 +9,7 @@ if [[ ! -f "${CONFIG_DIR}/app/config.yml" ]]; then
     chown hotio:hotio "${CONFIG_DIR}/app/config.yml"
     password=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c"${1:-32}";echo;)
     [[ ${DRONE} == true ]] && password=droneci
-    sed -i "s#{PASSWORD}#${password}#g" "${CONFIG_DIR}/app/config.yml" && echo "Your Autoscan username=hotio and password=${password}"
+    sed -i "s#PASSWORD#${password}#g" "${CONFIG_DIR}/app/config.yml" && echo "Your Autoscan username=hotio and password=${password}"
 fi
 
 if [[ ! -f "${CONFIG_DIR}/app/plex.token" ]] && [[ -n ${PLEX_LOGIN} ]] && [[ -n ${PLEX_PASSWORD} ]]; then
@@ -19,7 +19,7 @@ if [[ ! -f "${CONFIG_DIR}/app/plex.token" ]] && [[ -n ${PLEX_LOGIN} ]] && [[ -n 
 
     token="$(jq -r .[].authentication_token "${CONFIG_DIR}/app/plex.token")"
     if [[ -n ${token} ]] && [[ ${token} != null ]]; then
-        sed -i "s#\{TOKEN}#${token}#g" "${CONFIG_DIR}/app/config.yml" && echo "Updated \"config.yml\" with token \"${token}\"."
+        sed -i "s#\TOKEN#${token}#g" "${CONFIG_DIR}/app/config.yml" && echo "Updated \"config.yml\" with token \"${token}\"."
     else
         echo "Something went wrong trying to get a token!"
     fi
