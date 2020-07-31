@@ -1,6 +1,6 @@
 FROM golang:alpine as builder
 
-RUN apk add --no-cache gcc
+RUN apk add --no-cache gcc libc-dev
 
 ARG AUTOSCAN_VERSION
 
