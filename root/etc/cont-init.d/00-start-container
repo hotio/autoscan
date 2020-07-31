@@ -13,6 +13,7 @@ UMASK=${UMASK}
 TZ=${TZ}
 ARGS=${ARGS}
 DEBUG=${DEBUG}
+AUTOSCAN_VERBOSITY=${AUTOSCAN_VERBOSITY}
 PLEX_LOGIN=${PLEX_LOGIN}
 PLEX_PASSWORD=${PLEX_PASSWORD}
 ----------------------------------------------------------------------
