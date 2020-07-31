@@ -2,8 +2,8 @@
 
 if [[ ${1} == "checkservice" ]]; then
     SERVICE="http://service:3030/triggers/sonarr"
-    currenttime=$(date +%s); maxtime=$((currenttime+60)); while (! curl -fsSL ${SERVICE} > /dev/null) && [[ "$currenttime" -lt "$maxtime" ]]; do sleep 1; currenttime=$(date +%s); done
-    curl -fsSL ${SERVICE} > /dev/null
+    currenttime=$(date +%s); maxtime=$((currenttime+60)); while (! curl -fsSL --header "Content-Type: application/json" --request POST --data '{"eventType": "Test","series": {"id": 1,"title": "Test Title","path": "C:\\testpath","tvdbId": 1234},"episodes": [{"id": 123,"episodeNumber": 1,"seasonNumber": 1,"title": "Test title","qualityVersion": 0}]}' ${SERVICE} > /dev/null) && [[ "$currenttime" -lt "$maxtime" ]]; do sleep 1; currenttime=$(date +%s); done
+    curl -fsSL --header "Content-Type: application/json" --request POST --data '{"eventType": "Test","series": {"id": 1,"title": "Test Title","path": "C:\\testpath","tvdbId": 1234},"episodes": [{"id": 123,"episodeNumber": 1,"seasonNumber": 1,"title": "Test title","qualityVersion": 0}]}' ${SERVICE} > /dev/null
 elif [[ ${1} == "checkdigests" ]]; then
     mkdir ~/.docker && echo '{"experimental": "enabled"}' > ~/.docker/config.json
     image="hotio/base"
