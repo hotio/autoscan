@@ -3,7 +3,7 @@
 if [[ ${1} == "checkservice" ]]; then
     SERVICE="http://service:3030/triggers/:sonarr"
     currenttime=$(date +%s); maxtime=$((currenttime+60)); while (! curl -fsSL ${SERVICE} > /dev/null) && [[ "$currenttime" -lt "$maxtime" ]]; do sleep 1; currenttime=$(date +%s); done
-    curl -fsSL -u "hotio:droneci" ${SERVICE} > /dev/null
+    curl -fsSL ${SERVICE} > /dev/null
 elif [[ ${1} == "checkdigests" ]]; then
     mkdir ~/.docker && echo '{"experimental": "enabled"}' > ~/.docker/config.json
     image="hotio/base"

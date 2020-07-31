@@ -2,10 +2,6 @@
 ## This is just a basic config file to get the app to start ##
 ##############################################################
 
-authentication:
-  username: hotio
-  password: PASSWORD
-
 port: 3030
 
 triggers:
