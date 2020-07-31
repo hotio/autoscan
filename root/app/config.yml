@@ -1,0 +1,43 @@
+##############################################################
+## This is just a basic config file to get the app to start ##
+##############################################################
+
+retries: 10
+
+minimum-age: 2m
+
+anchors:
+  - /storage/movies/.mounted
+  - /storage/tvshows/.mounted
+  - /storage/music/.mounted
+
+authentication:
+  username: hotio
+  password: {PASSWORD}
+
+port: 3030
+
+triggers:
+  sonarr:
+    - name: sonarr
+      priority: 2
+      rewrite:
+        from: /storage/tvshows/*
+        to: /storage/tvshows/$1
+  radarr:
+    - name: radarr
+      priority: 2
+    - name: radarr4k
+      priority: 5
+  lidarr:
+    - name: lidarr
+      priority: 1
+
+targets:
+  plex:
+    - url: https://plex:32400
+      database: /databases/plex/com.plexapp.plugins.library.db
+      token: {TOKEN}
+      rewrite:
+        from: /storage/*
+        to: /storage/$1

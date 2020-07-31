@@ -1,0 +1,26 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+umask "${UMASK}"
+
+if [[ ! -f "${CONFIG_DIR}/app/config.yml" ]]; then
+    echo "Installing default \"config.yml\"..."
+    cp /app/config.yml "${CONFIG_DIR}/app/config.yml"
+    chown hotio:hotio "${CONFIG_DIR}/app/config.yml"
+    password=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c"${1:-32}";echo;)
+    [[ ${DRONE} == true ]] && password=droneci
+    sed -i "s#{PASSWORD}#${password}#g" "${CONFIG_DIR}/app/config.yml" && echo "Your Autoscan username=hotio and password=${password}"
+fi
+
+if [[ ! -f "${CONFIG_DIR}/app/plex.token" ]] && [[ -n ${PLEX_LOGIN} ]] && [[ -n ${PLEX_PASSWORD} ]]; then
+    echo "Trying to get a Plex token for Autoscan..."
+    curl -fsSL -u "${PLEX_LOGIN}":"${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.json' -X POST -H 'X-Plex-Client-Identifier: '"$(uuidgen)" -H 'X-Plex-Product: Autoscan' -H 'X-Plex-Provides: controller' -H 'X-Plex-Device: '"$(uname -s) $(uname -r)" | jq . \
+        > "${CONFIG_DIR}/app/plex.token" && chown hotio:hotio "${CONFIG_DIR}/app/plex.token"
+
+    token="$(jq -r .[].authentication_token "${CONFIG_DIR}/app/plex.token")"
+    if [[ -n ${token} ]] && [[ ${token} != null ]]; then
+        sed -i "s#\{TOKEN}#${token}#g" "${CONFIG_DIR}/app/config.yml" && echo "Updated \"config.yml\" with token \"${token}\"."
+    else
+        echo "Something went wrong trying to get a token!"
+    fi
+fi
