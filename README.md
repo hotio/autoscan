@@ -23,7 +23,12 @@ The environment variables below are all optional, the values you see are the def
 -e TZ="Etc/UTC"
 -e ARGS=""
 -e DEBUG="no"
+-e AUTOSCAN_VERBOSITY=0
+-e PLEX_LOGIN=""
+-e PLEX_PASSWORD=""
 ```
+
+If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.token` does not exist, an attempt is made to get a Plex token for Autoscan.
 
 ## Tags
 
