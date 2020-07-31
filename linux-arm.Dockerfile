@@ -5,7 +5,7 @@ RUN apk add --no-cache gcc libc-dev
 ARG AUTOSCAN_VERSION
 
 RUN mkdir /autoscan && \
-    wget -O - "https://github.com/Cloudbox/autoscan/archive/v${AUTOSCAN_VERSION}.tar.gz" | tar xzf - -C "/autoscan" --strip-components=1 && \
+    wget -O - "https://github.com/Cloudbox/autoscan/archive/${AUTOSCAN_VERSION}.tar.gz" | tar xzf - -C "/autoscan" --strip-components=1 && \
     cd /autoscan && \
     go build -o autoscan ./cmd/autoscan
 
