@@ -9,7 +9,7 @@ RUN mkdir /autoscan && \
     cd /autoscan && \
     go build -o autoscan ./cmd/autoscan
 
-FROM hotio/base@sha256:fd6cef3f4f361b5def1337cfb26b796bc401cf8c07cae4ebd376f4d603a32136
+FROM hotio/base@sha256:446dc3af8d33da7fb194ac1a5170f27c76fefa89067023a1cab73463edb925d8
 ENV AUTOSCAN_VERBOSITY=0
 EXPOSE 3030
 
