@@ -32,11 +32,11 @@ If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.t
 
 ## Tags
 
-| Tag      | Description                                        | Build Status                                                                                            | Last Updated                                                                                             |
-| ---------|----------------------------------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| latest   | The same as `stable`                               |                                                                                                         |                                                                                                          |
-| stable   | Stable version                                     | ![build](https://github.com/hotio/docker-autoscan/workflows/build/badge.svg?branch=stable&event=push)   | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-autoscan/stable)   |
-| unstable | Unstable version, every commit from master branch  | ![build](https://github.com/hotio/docker-autoscan/workflows/build/badge.svg?branch=unstable&event=push) | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hotio/docker-autoscan/unstable) |
+| Tag      | Description                                        |
+| ---------|----------------------------------------------------|
+| latest   | The same as `stable`                               |
+| stable   | Stable version                                     |
+| unstable | Unstable version, every commit from master branch  |
 
 You can also find tags that reference a commit or version number.
 
