@@ -89,10 +89,6 @@ jobs:
         run: |
           docker run --rm --entrypoint="" ${{ steps.prep.outputs.tag }} apk -vv info | sort
 
-      - name: Show version
-        run: |
-          docker run --rm --entrypoint="" ${{ steps.prep.outputs.tag }} apprise --version
-
       - name: Check if app works
         run: |
           app_url="http://localhost:3030/triggers/sonarr"
