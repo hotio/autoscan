@@ -121,8 +121,9 @@ jobs:
           docker manifest create ${IMAGE}:${TAG}                                    --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}
           docker manifest create ${IMAGE}:${TAG}-${{ needs.build.outputs.version }} --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}-${{ needs.build.outputs.version }}
           docker manifest create ${IMAGE}:${TAG}-${GITHUB_SHA:0:7}                  --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}-${GITHUB_SHA:0:7}
-          [[ ${GITHUB_REF//refs\/heads\//} == stable ]] && \
+          if [[ ${GITHUB_REF//refs\/heads\//} == stable ]]; then
           docker manifest create ${IMAGE}:latest                                    --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:latest
+          fi
 
       - name: Create manifests for GitHub Container Registry
         env:
@@ -134,8 +135,9 @@ jobs:
           docker manifest create ${IMAGE}:${TAG}                                    --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}
           docker manifest create ${IMAGE}:${TAG}-${{ needs.build.outputs.version }} --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}-${{ needs.build.outputs.version }}
           docker manifest create ${IMAGE}:${TAG}-${GITHUB_SHA:0:7}                  --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:${TAG}-${GITHUB_SHA:0:7}
-          [[ ${GITHUB_REF//refs\/heads\//} == stable ]] && \
+          if [[ ${GITHUB_REF//refs\/heads\//} == stable ]]; then
           docker manifest create ${IMAGE}:latest                                    --amend ${SOURCE}-linux-amd64 --amend ${SOURCE}-linux-arm-v7 --amend ${SOURCE}-linux-arm64 && docker manifest push ${IMAGE}:latest
+          fi
 
   notify:
     runs-on: ubuntu-20.04
