@@ -33,11 +33,10 @@ If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.t
 
 ## Tags
 
-| Tag      | Description                                        |
-| ---------|----------------------------------------------------|
-| latest   | The same as `stable`                               |
-| stable   | Stable version                                     |
-| unstable | Unstable version, every commit from master branch  |
+| Tag              | Upstream               |
+| -----------------|------------------------|
+| release (latest) | GitHub releases        |
+| nightly          | Every commit to master |
 
 You can also find tags that reference a commit or version number.
 
