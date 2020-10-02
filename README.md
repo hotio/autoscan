@@ -11,32 +11,33 @@
 
 Just the basics to get the container running:
 
-```shell
-docker run --rm --name autoscan -p 3030:3030 -v /<host_folder_config>:/config hotio/autoscan
+```shell hl_lines="4 5 6 7 8 9 10 11 12"
+docker run --rm \
+    --name autoscan \
+    -p 3030:3030 \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e UMASK=002 \
+    -e TZ="Etc/UTC" \
+    -e ARGS="" \
+    -e DEBUG="no" \
+    -e AUTOSCAN_VERBOSITY=0 \
+    -e PLEX_LOGIN="" \
+    -e PLEX_PASSWORD="" \
+    -v /<host_folder_config>:/config \
+    hotio/autoscan
 ```
 
-The environment variables below are all optional, the values you see are the defaults.
-
-```shell
--e PUID=1000
--e PGID=1000
--e UMASK=002
--e TZ="Etc/UTC"
--e ARGS=""
--e DEBUG="no"
--e AUTOSCAN_VERBOSITY=0
--e PLEX_LOGIN=""
--e PLEX_PASSWORD=""
-```
+The [highlighted](https://hotio.dev/containers/autoscan) variables are all optional, the values you see are the defaults.
 
 If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.token` does not exist, an attempt is made to get a Plex token for Autoscan.
 
 ## Tags
 
-| Tag              | Upstream               |
-| -----------------|------------------------|
-| release (latest) | GitHub releases        |
-| nightly          | Every commit to master |
+| Tag                | Upstream               |
+| -------------------|------------------------|
+| `release` (latest) | GitHub releases        |
+| `nightly`          | Every commit to master |
 
 You can also find tags that reference a commit or version number.
 
