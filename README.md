@@ -32,10 +32,10 @@ If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.t
 
 ## Tags
 
-| Tag                | Upstream               |
-| -------------------|------------------------|
-| `release` (latest) | GitHub releases        |
-| `nightly`          | Every commit to master |
+| Tag                | Upstream               | Version |
+| -------------------|------------------------|---------|
+| `release` (latest) | GitHub releases        | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fdocker-hotio%2Fdocker-autoscan%2Frelease%2FVERSION.json) |
+| `nightly`          | Every commit to master | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fdocker-hotio%2Fdocker-autoscan%2Fnightly%2FVERSION.json) |
 
 You can also find tags that reference a commit or version number.
 
