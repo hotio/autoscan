@@ -43,6 +43,10 @@ You can also find tags that reference a commit or version number.
 
 Your autoscan configuration inside the container is stored in `/config/app`, to migrate from another container, you'd probably have to move your files from `/config` to `/config/app`.
 
+## Using a secure connection for the plex trigger, without your own domain
+
+Go to `https://plex.tv/pms/resources.xml?includeHttps=1&X-Plex-Token=xxxxxxxxxxxxxx` (replace `xxxxxxxxxxxxxx` with your token) and look for a url that looks like `https://10-1-0-100.xxxxxxxxxxxxx.plex.direct:32400`. That url can be used in your autoscan plex trigger (you can leave secure connections enbabled this way). You should however give the plex container a static IP if you don't wanna do this every 5 minutes.
+
 ## Executing your own scripts
 
 If you have a need to do additional stuff when the container starts or stops, you can mount your script with `-v /docker/host/my-script.sh:/etc/cont-init.d/99-my-script` to execute your script on container start or `-v /docker/host/my-script.sh:/etc/cont-finish.d/99-my-script` to execute it when the container stops. An example script can be seen below.
