@@ -10,7 +10,7 @@ RUN mkdir /autoscan && \
     go build -o autoscan ./cmd/autoscan && \
     chmod 755 "/autoscan/autoscan"
 
-FROM hotio/base@sha256:88cae906228e62cc8b5730795161bd8960987f39049b833ce163e0c2d98756cc
+FROM hotio/base@sha256:70e8ded98060532e016833ffaf9d5f0ce8ca674ebc052bb8b12bdf66a90c61fe
 ENV AUTOSCAN_VERBOSITY=0
 EXPOSE 3030
 
