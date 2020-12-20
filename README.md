@@ -1,4 +1,4 @@
-[![GitHub Source](https://img.shields.io/badge/github-source-ffb64c?style=flat-square&logo=github&logoColor=white&labelColor=757575)](https://github.com/docker-hotio/docker-autoscan)
+[![GitHub Source](https://img.shields.io/badge/github-source-ffb64c?style=flat-square&logo=github&logoColor=white&labelColor=757575)](https://github.com/hotio/autoscan)
 [![GitHub Registry](https://img.shields.io/badge/github-registry-ffb64c?style=flat-square&logo=github&logoColor=white&labelColor=757575)](https://github.com/users/hotio/packages/container/package/autoscan)
 [![Docker Pulls](https://img.shields.io/docker/pulls/hotio/autoscan?color=ffb64c&style=flat-square&label=pulls&logo=docker&logoColor=white&labelColor=757575)](https://hub.docker.com/r/hotio/autoscan)
 [![Discord](https://img.shields.io/discord/610068305893523457?style=flat-square&color=ffb64c&label=discord&logo=discord&logoColor=white&labelColor=757575)](https://hotio.dev/discord)
@@ -34,8 +34,8 @@ If `PLEX_LOGIN` + `PLEX_PASSWORD` are not empty and the file `/config/app/plex.t
 
 | Tag                | Upstream               | Version | Build |
 | -------------------|------------------------|---------|-------|
-| `release` (latest) | GitHub releases        | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fdocker-hotio%2Fdocker-autoscan%2Frelease%2FVERSION.json) | ![build](https://img.shields.io/github/workflow/status/docker-hotio/docker-autoscan/build/release?style=flat-square&label=) |
-| `nightly`          | Every commit to master | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fdocker-hotio%2Fdocker-autoscan%2Fnightly%2FVERSION.json) | ![build](https://img.shields.io/github/workflow/status/docker-hotio/docker-autoscan/build/nightly?style=flat-square&label=) |
+| `release` (latest) | GitHub releases        | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhotio%2Fautoscan%2Frelease%2FVERSION.json) | ![build](https://img.shields.io/github/workflow/status/hotio/autoscan/build/release?style=flat-square&label=) |
+| `nightly`          | Every commit to master | ![version](https://img.shields.io/badge/dynamic/json?color=f5f5f5&style=flat-square&label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhotio%2Fautoscan%2Fnightly%2FVERSION.json) | ![build](https://img.shields.io/github/workflow/status/hotio/autoscan/build/nightly?style=flat-square&label=) |
 
 You can also find tags that reference a commit or version number.
 
