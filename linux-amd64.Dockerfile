@@ -10,7 +10,7 @@ RUN mkdir /autoscan && \
     go build -o autoscan ./cmd/autoscan && \
     chmod 755 "/autoscan/autoscan"
 
-FROM ghcr.io/burningio/base@sha256:827bec582780a26d451b619961a80a9e9b9e9bf66844916ec3c66a78df5b53f7
+FROM ghcr.io/hotio/base@sha256:827bec582780a26d451b619961a80a9e9b9e9bf66844916ec3c66a78df5b53f7
 ENV AUTOSCAN_VERBOSITY=0
 EXPOSE 3030
 
