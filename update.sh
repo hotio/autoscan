@@ -24,5 +24,8 @@ elif [[ ${1} == "tests" ]]; then
 else
     version=$(curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -fsSL "https://api.github.com/repos/cloudbox/autoscan/commits/master" | jq -r .sha)
     [[ -z ${version} ]] && exit 1
-    echo '{"version":"'"${version}"'"}' | jq . > VERSION.json
+    old_version=$(jq -r '.version' < VERSION.json)
+    changelog=$(jq -r '.changelog' < VERSION.json)
+    [[ "${old_version}" != "${version}" ]] && changelog="https://github.com/cloudbox/autoscan/compare/${old_version}...${version}"
+    echo '{"version":"'"${version}"'","changelog":"'"${changelog}"'"}' | jq . > VERSION.json
 fi
