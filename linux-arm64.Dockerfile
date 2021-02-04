@@ -11,7 +11,7 @@ RUN mkdir /autoscan && \
     chmod 755 "/autoscan/autoscan"
 
 FROM ghcr.io/hotio/base@sha256:b3293df11d364305a12e1df4a09304d01589036c8380387d32089ab395b18cc8
-ENV AUTOSCAN_VERBOSITY=0
+
 EXPOSE 3030
 
 COPY --from=builder /autoscan/autoscan ${APP_DIR}/autoscan
