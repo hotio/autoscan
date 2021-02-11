@@ -3,9 +3,9 @@
 
 umask "${UMASK}"
 
-AUTOSCAN_CONFIG="${CONFIG_DIR}/app/config.yml"    && export AUTOSCAN_CONFIG
-AUTOSCAN_DATABASE="${CONFIG_DIR}/app/autoscan.db" && export AUTOSCAN_DATABASE
-AUTOSCAN_LOG="${CONFIG_DIR}/app/autoscan.log"     && export AUTOSCAN_LOG
+AUTOSCAN_CONFIG="${CONFIG_DIR}/config.yml"    && export AUTOSCAN_CONFIG
+AUTOSCAN_DATABASE="${CONFIG_DIR}/autoscan.db" && export AUTOSCAN_DATABASE
+AUTOSCAN_LOG="${CONFIG_DIR}/autoscan.log"     && export AUTOSCAN_LOG
 
 # shellcheck disable=SC2086
 exec s6-setuidgid hotio "${APP_DIR}/autoscan" ${ARGS}

@@ -3,18 +3,18 @@
 
 umask "${UMASK}"
 
-if [[ ! -f "${CONFIG_DIR}/app/config.yml" ]]; then
+if [[ ! -f "${CONFIG_DIR}/config.yml" ]]; then
     echo "Installing default \"config.yml\"..."
-    cp /app/config.yml "${CONFIG_DIR}/app/config.yml"
-    chown hotio:hotio "${CONFIG_DIR}/app/config.yml"
+    cp "${APP_DIR}/config.yml" "${CONFIG_DIR}/config.yml"
+    chown hotio:hotio "${CONFIG_DIR}/config.yml"
 fi
 
-if [[ ! -f "${CONFIG_DIR}/app/plex.token" ]] && [[ -n ${PLEX_LOGIN} ]] && [[ -n ${PLEX_PASSWORD} ]]; then
+if [[ ! -f "${CONFIG_DIR}/plex.token" ]] && [[ -n ${PLEX_LOGIN} ]] && [[ -n ${PLEX_PASSWORD} ]]; then
     echo "Trying to get a Plex token for Autoscan..."
     curl -fsSL -u "${PLEX_LOGIN}":"${PLEX_PASSWORD}" 'https://plex.tv/users/sign_in.json' -X POST -H 'X-Plex-Client-Identifier: '"$(cat /proc/sys/kernel/random/uuid)" -H 'X-Plex-Product: Autoscan' -H 'X-Plex-Provides: controller' -H 'X-Plex-Device: '"$(uname -s) $(uname -r)" | jq . \
-        > "${CONFIG_DIR}/app/plex.token" && chown hotio:hotio "${CONFIG_DIR}/app/plex.token"
+        > "${CONFIG_DIR}/plex.token" && chown hotio:hotio "${CONFIG_DIR}/plex.token"
 
-    token="$(jq -r .[].authentication_token "${CONFIG_DIR}/app/plex.token")"
+    token="$(jq -r .[].authentication_token "${CONFIG_DIR}/plex.token")"
     if [[ -n ${token} ]] && [[ ${token} != null ]]; then
         echo "Your Plex token is: ${token}, you can use this in your config.yml."
     else
