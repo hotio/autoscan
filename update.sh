@@ -14,7 +14,7 @@ elif [[ ${1} == "tests" ]]; then
     docker run --rm --entrypoint="" "${2}" apk -vv info | sort
     echo "Check if app works..."
     app_url="http://localhost:3030/triggers/sonarr"
-    docker run --rm --network host -d --name service -e DEBUG="yes" "${2}"
+    docker run --network host -d --name service "${2}"
     currenttime=$(date +%s); maxtime=$((currenttime+60)); while (! curl -fsSL --header "Content-Type: application/json" --request POST --data '{"eventType": "Test","series": {"id": 1,"title": "Test Title","path": "C:\\testpath","tvdbId": 1234},"episodes": [{"id": 123,"episodeNumber": 1,"seasonNumber": 1,"title": "Test title","qualityVersion": 0}]}' "${app_url}" > /dev/null) && [[ "$currenttime" -lt "$maxtime" ]]; do sleep 1; currenttime=$(date +%s); done
     curl -fsSL --header "Content-Type: application/json" --request POST --data '{"eventType": "Test","series": {"id": 1,"title": "Test Title","path": "C:\\testpath","tvdbId": 1234},"episodes": [{"id": 123,"episodeNumber": 1,"seasonNumber": 1,"title": "Test title","qualityVersion": 0}]}' "${app_url}" > /dev/null
     status=$?
