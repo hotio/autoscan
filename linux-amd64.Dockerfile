@@ -17,3 +17,4 @@ EXPOSE 3030
 COPY --from=builder /autoscan/autoscan ${APP_DIR}/autoscan
 
 COPY root/ /
+RUN chmod -R +x /etc/cont-init.d/
