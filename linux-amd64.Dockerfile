@@ -1,3 +1,6 @@
+ARG UPSTREAM_IMAGE
+ARG UPSTREAM_DIGEST_AMD64
+
 FROM golang:alpine as builder
 
 RUN apk add --no-cache gcc libc-dev
@@ -10,9 +13,8 @@ RUN mkdir /autoscan && \
     go build -o autoscan ./cmd/autoscan && \
     chmod 755 "/autoscan/autoscan"
 
-ARG UPSTREAM_IMAGE
-ARG UPSTREAM_DIGEST_AMD64
-FROM "${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_AMD64}"
+
+FROM ${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_AMD64}
 
 EXPOSE 3030
 
