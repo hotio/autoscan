@@ -1,3 +1,6 @@
+ARG UPSTREAM_IMAGE
+ARG UPSTREAM_DIGEST_ARM64
+
 FROM golang:alpine as builder
 
 RUN apk add --no-cache gcc libc-dev
@@ -10,7 +13,8 @@ RUN mkdir /autoscan && \
     go build -o autoscan ./cmd/autoscan && \
     chmod 755 "/autoscan/autoscan"
 
-FROM cr.hotio.dev/hotio/base@sha256:32f7802fe9903727645618677d0109a2da34a6d2efbc494f3afae50fdb7b2dd2
+
+FROM ${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_ARM64}
 
 EXPOSE 3030
 
