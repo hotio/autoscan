@@ -2,12 +2,14 @@
 
 if [[ ${1} == "checkdigests" ]]; then
     export DOCKER_CLI_EXPERIMENTAL=enabled
-    image="cr.hotio.dev/hotio/base"
-    tag="alpine"
-    manifest=$(docker manifest inspect ${image}:${tag})
+    upstream_image=$(jq -r '.upstream_image' < VERSION.json)
+    upstream_tag=$(jq -r '.upstream_tag' < VERSION.json)
+    manifest=$(docker manifest inspect "${upstream_image}:${upstream_tag}")
     [[ -z ${manifest} ]] && exit 1
-    digest=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "amd64" and .platform.os == "linux").digest') && sed -i "s#FROM ${image}@.*\$#FROM ${image}@${digest}#g" ./linux-amd64.Dockerfile  && echo "${digest}"
-    digest=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "arm64" and .platform.os == "linux").digest') && sed -i "s#FROM ${image}@.*\$#FROM ${image}@${digest}#g" ./linux-arm64.Dockerfile  && echo "${digest}"
+    upstream_digest_amd64=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "amd64" and .platform.os == "linux").digest')
+    upstream_digest_arm64=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "arm64" and .platform.os == "linux").digest')
+    version_json=$(cat ./VERSION.json)
+    jq '.upstream_digest_amd64 = "'"${upstream_digest_amd64}"'" | .upstream_digest_arm64 = "'"${upstream_digest_arm64}"'"' <<< "${version_json}" > VERSION.json
 elif [[ ${1} == "tests" ]]; then
     echo "List installed packages..."
     docker run --rm --entrypoint="" "${2}" apk -vv info | sort
@@ -32,5 +34,6 @@ else
     old_version=$(jq -r '.version' < VERSION.json)
     changelog=$(jq -r '.changelog' < VERSION.json)
     [[ "${old_version}" != "${version}" ]] && changelog="https://github.com/cloudbox/autoscan/compare/v${old_version}...v${version}"
-    echo '{"version":"'"${version}"'","changelog":"'"${changelog}"'"}' | jq . > VERSION.json
+    version_json=$(cat ./VERSION.json)
+    jq '.version = "'"${version}"'" | .changelog = "'"${changelog}"'"' <<< "${version_json}" > VERSION.json
 fi
