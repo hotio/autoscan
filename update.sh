@@ -2,13 +2,13 @@
 
 if [[ ${1} == "checkdigests" ]]; then
     export DOCKER_CLI_EXPERIMENTAL=enabled
-    upstream_image=$(jq -r '.upstream_image' < VERSION.json)
-    upstream_tag=$(jq -r '.upstream_tag' < VERSION.json)
+    version_json=$(cat ./VERSION.json)
+    upstream_image=$(jq -r '.upstream_image' <<< "${version_json}")
+    upstream_tag=$(jq -r '.upstream_tag' <<< "${version_json}")
     manifest=$(docker manifest inspect "${upstream_image}:${upstream_tag}")
     [[ -z ${manifest} ]] && exit 1
     upstream_digest_amd64=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "amd64" and .platform.os == "linux").digest')
     upstream_digest_arm64=$(echo "${manifest}" | jq -r '.manifests[] | select (.platform.architecture == "arm64" and .platform.os == "linux").digest')
-    version_json=$(cat ./VERSION.json)
     jq '.upstream_digest_amd64 = "'"${upstream_digest_amd64}"'" | .upstream_digest_arm64 = "'"${upstream_digest_arm64}"'"' <<< "${version_json}" > VERSION.json
 elif [[ ${1} == "tests" ]]; then
     echo "List installed packages..."
