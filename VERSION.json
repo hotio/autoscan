@@ -1,6 +1,6 @@
 {
-  "version": "87994855e1814f9b6be0675f9baa39333c6d95e0",
-  "changelog": "https://github.com/cloudbox/autoscan/compare/5c98e4b58c9a5d74a92e5b9e083bfcae1e9f7cc3...87994855e1814f9b6be0675f9baa39333c6d95e0",
+  "version": "63edb8ee5a69fc6ae6fc8f1229c53cf6a61bc927",
+  "changelog": "https://github.com/cloudbox/autoscan/compare/87994855e1814f9b6be0675f9baa39333c6d95e0...63edb8ee5a69fc6ae6fc8f1229c53cf6a61bc927",
   "upstream_image": "cr.hotio.dev/hotio/base",
   "upstream_tag": "alpine",
   "upstream_digest_amd64": "sha256:7fb1409bac0085160b4cd32c20e08946e2caec104da84a6d1a582bdbbef77eb1",
