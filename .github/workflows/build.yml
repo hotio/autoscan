@@ -262,6 +262,7 @@ jobs:
             docker manifest create ${IMAGE}:latest ${AMD64} ${ARM64} ${ARMV7}
             docker manifest push   ${IMAGE}:latest
           fi
+          exit 1
 
       - name: Sleep
         if: (steps.manifest_attempt1.outcome == 'failure')
