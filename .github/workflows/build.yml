@@ -99,7 +99,7 @@ jobs:
 
       - name: Build and push - Attempt 1
         if: "contains(steps.arch_check.outputs.check, 'passed')"
-        id: attempt1
+        id: build_attempt1
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -125,7 +125,7 @@ jobs:
             ${{ steps.prep.outputs.build-args }}
 
       - name: Build and push - Attempt 2
-        if: always() && (steps.attempt1.outcome == 'failure')
+        if: always() && (steps.build_attempt1.outcome == 'failure')
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -232,7 +232,32 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PERSONAL_TOKEN }}
 
-      - name: Create manifests
+      - name: Create manifests - Attempt 1
+        id: manifest_attempt1
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled
+        run: |
+          IMAGE=${{ matrix.registry }}/${GITHUB_REPOSITORY}
+          TAG=${GITHUB_REF//refs\/heads\//}
+          SOURCE=${IMAGE}:${TAG}-${GITHUB_SHA:0:7}-${GITHUB_RUN_NUMBER}
+          VERSION=${{ needs.build.outputs.version }}
+          BRANCH=${{ needs.build.outputs.branch }}
+          [[ -f linux-amd64.Dockerfile ]]  && AMD64=${SOURCE}-linux-amd64
+          [[ -f linux-arm64.Dockerfile ]]  && ARM64=${SOURCE}-linux-arm64
+          [[ -f linux-arm-v7.Dockerfile ]] && ARMV7=${SOURCE}-linux-arm-v7
+          docker manifest create ${IMAGE}:${TAG}${BRANCH} ${AMD64} ${ARM64} ${ARMV7}
+          docker manifest push   ${IMAGE}:${TAG}${BRANCH}
+          docker manifest create ${IMAGE}:${TAG}${BRANCH}-${VERSION//\~/-} ${AMD64} ${ARM64} ${ARMV7}
+          docker manifest push   ${IMAGE}:${TAG}${BRANCH}-${VERSION//\~/-}
+          docker manifest create ${IMAGE}:${TAG}-${GITHUB_SHA:0:7} ${AMD64} ${ARM64} ${ARMV7}
+          docker manifest push   ${IMAGE}:${TAG}-${GITHUB_SHA:0:7}
+          if [[ ${TAG} == release ]]; then
+            docker manifest create ${IMAGE}:latest ${AMD64} ${ARM64} ${ARMV7}
+            docker manifest push   ${IMAGE}:latest
+          fi
+
+      - name: Create manifests - Attempt 2
+        if: always() && (steps.manifest_attempt1.outcome == 'failure')
         env:
           DOCKER_CLI_EXPERIMENTAL: enabled
         run: |
@@ -257,7 +282,7 @@ jobs:
 
   notify:
     runs-on: ubuntu-20.04
-    if: ${{ always() }}
+    if: always()
     needs: [build, publish]
     steps:
       - name: Checkout
