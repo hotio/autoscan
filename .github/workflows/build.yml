@@ -99,6 +99,7 @@ jobs:
 
       - name: Build and push - Attempt 1
         if: "contains(steps.arch_check.outputs.check, 'passed')"
+        id: attempt1
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -124,9 +125,7 @@ jobs:
             ${{ steps.prep.outputs.build-args }}
 
       - name: Build and push - Attempt 2
-        if: |
-          contains(steps.arch_check.outputs.check, 'passed') &&
-          ${{ failure() }}
+        if: always() && (steps.attempt1.outcome == 'failure')
         uses: docker/build-push-action@v3
         with:
           push: true
