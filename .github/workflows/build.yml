@@ -108,7 +108,7 @@ jobs:
           cache-from: docker.io/${{ steps.prep.outputs.cache }}
           cache-to: docker.io/${{ steps.prep.outputs.cache }}
           tags: |
-            docker.io/${{ steps.prep.outputs.tag }}
+            dockerssss.io/${{ steps.prep.outputs.tag }}
             ghcr.io/${{ steps.prep.outputs.tag }}
           labels: |
             org.opencontainers.image.created=${{ steps.prep.outputs.created }}
