@@ -1,4 +1,5 @@
 {
+  "description": "Every commit to master",
   "version": "63edb8ee5a69fc6ae6fc8f1229c53cf6a61bc927",
   "changelog": "https://github.com/cloudbox/autoscan/compare/87994855e1814f9b6be0675f9baa39333c6d95e0...63edb8ee5a69fc6ae6fc8f1229c53cf6a61bc927",
   "upstream_image": "cr.hotio.dev/hotio/base",
