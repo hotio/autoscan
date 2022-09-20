@@ -1,4 +1,5 @@
 {
+  "description": "Releases",
   "version": "1.3.0",
   "changelog": "https://github.com/cloudbox/autoscan/compare/v1.2.0...v1.3.0",
   "upstream_image": "cr.hotio.dev/hotio/base",
