@@ -15,7 +15,7 @@ RUN mkdir /autoscan && \
 
 
 FROM ${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_AMD64}
-
+EXPOSE 3030
 VOLUME ["${CONFIG_DIR}"]
 
 COPY --from=builder /autoscan/autoscan ${APP_DIR}/autoscan
