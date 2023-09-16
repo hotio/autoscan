@@ -1,7 +1,7 @@
 {
   "description": "Every commit to master",
-  "version": "ff170773ac46822499067fa5a363206bf289c89f",
-  "changelog": "https://github.com/cloudbox/autoscan/compare/63edb8ee5a69fc6ae6fc8f1229c53cf6a61bc927...ff170773ac46822499067fa5a363206bf289c89f",
+  "version": "e5575d5ffd35141615e9e144ff42d99aaa5b8af7",
+  "changelog": "https://github.com/cloudbox/autoscan/compare/ff170773ac46822499067fa5a363206bf289c89f...e5575d5ffd35141615e9e144ff42d99aaa5b8af7",
   "upstream_image": "cr.hotio.dev/hotio/base",
   "upstream_tag": "alpine",
   "upstream_digest_amd64": "sha256:15d3c6c0bb56f67e651612f21d335e0b0faed3b1bfd88f2c96758ef1d390138a",
