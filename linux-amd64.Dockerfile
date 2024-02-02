@@ -15,9 +15,9 @@ RUN mkdir /autoscan && \
 
 
 FROM ${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_AMD64}
+EXPOSE 3030
 ARG IMAGE_STATS
 ENV IMAGE_STATS=${IMAGE_STATS}
-EXPOSE 3030
 
 COPY --from=builder /autoscan/autoscan ${APP_DIR}/autoscan
 
