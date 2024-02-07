@@ -1,10 +1,9 @@
 {
   "description": "Every commit to master",
-  "version": "e5575d5ffd35141615e9e144ff42d99aaa5b8af7",
-  "changelog": "https://github.com/cloudbox/autoscan/compare/ff170773ac46822499067fa5a363206bf289c89f...e5575d5ffd35141615e9e144ff42d99aaa5b8af7",
-  "upstream_image": "ghcr.io/hotio/base",
-  "upstream_tag": "alpinevpn",
+  "test_url": "http://localhost:3030/triggers/manual",
   "upstream_digest_amd64": "sha256:cfee33d5f5c24786c2f8913e848513c62b9c0fb06cbb86fb97118718938e7ceb",
   "upstream_digest_arm64": "sha256:5187c6bc4300e2dab15540733d1e0d1ac8fb8e289472bb5221ff42bc7d38aa2a",
-  "test_url": "http://localhost:3030/triggers/manual"
+  "upstream_image": "ghcr.io/hotio/base",
+  "upstream_tag": "alpinevpn",
+  "version": "e5575d5ffd35141615e9e144ff42d99aaa5b8af7"
 }
