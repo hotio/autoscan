@@ -14,13 +14,13 @@
   "release": {
     "description": "Releases",
     "hide": false,
-    "last_updated": "2024-09-25T05:25:30.000Z",
-    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/11026706129",
+    "last_updated": "2024-10-11T01:09:37.000Z",
+    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/11284350865",
     "latest": true,
     "tags": [
       "release",
       "release-1.4.0",
-      "release-d306c1b"
+      "release-89c4914"
     ]
   }
 }
