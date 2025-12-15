@@ -2,13 +2,13 @@
   "nightly": {
     "description": "Every commit to master",
     "hide": false,
-    "last_updated": "2025-12-15T00:34:00.000Z",
-    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/20216614361",
+    "last_updated": "2025-12-15T04:16:43.000Z",
+    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/20220042898",
     "latest": false,
     "tags": [
       "nightly",
       "nightly-1d41f4b47ede7531ecc24944bfcaf88db10c2ba7",
-      "nightly-918c0c8"
+      "nightly-96d1a7e"
     ]
   },
   "release": {
