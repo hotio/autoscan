@@ -22,3 +22,4 @@ ENV IMAGE_STATS=${IMAGE_STATS} WEBUI_PORTS="3030/tcp"
 COPY --from=builder /autoscan/autoscan ${APP_DIR}/autoscan
 
 COPY root/ /
+RUN find /etc/s6-overlay/s6-rc.d -name "run*" -execdir chmod +x {} +
