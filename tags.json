@@ -18,15 +18,16 @@
   },
   "release": {
     "commit_message": "Upstream image update",
+    "commit_sha": "88ea8c778875749b6d06b1676e3c14c109ec73f0",
     "description": "Releases",
     "hide": false,
-    "last_updated": "2026-01-04T09:25:20.000Z",
-    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/20690818826",
+    "last_updated": "2026-01-07T03:57:08.000Z",
+    "last_updated_url": "https://github.com/hotio/autoscan/actions/runs/20770095326",
     "latest": true,
     "tags": [
       "release",
       "release-1.4.0",
-      "release-56804b5",
+      "release-88ea8c7",
       "release-v1",
       "release-v1.4",
       "release-v1.4.0"
